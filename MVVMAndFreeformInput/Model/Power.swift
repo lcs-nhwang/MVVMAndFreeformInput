@@ -54,6 +54,7 @@ struct Power {
 }
  
 // VIEW MODEL
+@Observable
 class PowerViewModel {
     
     // MARK: Stored properties
@@ -97,9 +98,9 @@ class PowerViewModel {
     
     //MARK: INITIALIZERS
     init(
-        providedBase: String,
-        providedExponent: String,
-        recoverySuggestion: String
+        providedBase: String = "",
+        providedExponent: String = "",
+        recoverySuggestion: String = ""
     ) {
         self.providedBase = providedBase
         self.providedExponent = providedExponent
@@ -107,6 +108,9 @@ class PowerViewModel {
     }
 
 }
+
+var viewModel = PowerViewModel()
+
 
 
 
