@@ -31,7 +31,13 @@ struct PowerView: View {
                 HStack(alignment: .center) {
                     HStack(alignment: .top) {
                         
+                        Text("(")
+                            .font(.system(size: 96))
+                        
                         Text("\(power.base.formatted())")
+                            .font(.system(size: 96))
+                        
+                        Text(")")
                             .font(.system(size: 96))
                         
                         Text("\(power.exponent)")
