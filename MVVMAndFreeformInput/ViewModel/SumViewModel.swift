@@ -1,21 +1,22 @@
 //
-//  PowerViewModel.swift
+//  SumViewModel.swift
 //  MVVMAndFreeformInput
 //
-//  Created by Nicholas Hwang on 24/2/2025.
+//  Created by Nicholas Hwang on 25/2/2025.
 //
+
 
 import Foundation
 
 // VIEW MODEL
 @Observable
-class PowerViewModel {
+class SumViewModel {
     
     // MARK: Stored properties
     
     // Holds whatever the user has typed in the text fields
-    var providedBase: String
-    var providedExponent: String
+    var providedNum1: String
+    var providedNum2: String
     
     // Holds an appropriate error message, if there was a
     // problem with input provided by the user
@@ -23,13 +24,13 @@ class PowerViewModel {
     
     // MARK: Computed properties
     // Holds the evaluated power, when the input provided is valid
-    var power: Power? {
+    var sum: Sum? {
         
         // First check that the string in providedBase can
         // be converted into a number, then check that the
         // value is more than 0
-        guard let base = Double(providedBase) else {
-            recoverySuggestion = "Please provide a number for the base of the power."
+        guard let num1 = Double(providedNum1) else {
+            recoverySuggestion = "Please provide a number."
             
             return nil
         }
@@ -37,27 +38,27 @@ class PowerViewModel {
         // Now check that the string in providedExponent can be
         // converted into an integer, and that the value is
         // more than or equal to 1
-        guard let exponent = Int(providedExponent) else {
-            recoverySuggestion = "Please provide an integer for the exponent."
+        guard let num2 = Double(providedNum2) else {
+            recoverySuggestion = "Please provide a number."
             
             return nil
         }
         
         // Now that we know the base and exponent have valid values, return the evaluated power
         recoverySuggestion = "" // No error message
-        return Power(base: base, exponent: exponent)
+        return Sum(num1: num1, num2: num2)
         
     }
     
     
     //MARK: INITIALIZERS
     init(
-        providedBase: String = "",
-        providedExponent: String = "",
+        providedNum1: String = "",
+        providedNum2: String = "",
         recoverySuggestion: String = ""
     ) {
-        self.providedBase = providedBase
-        self.providedExponent = providedExponent
+        self.providedNum1 = providedNum1
+        self.providedNum2 = providedNum2
         self.recoverySuggestion = recoverySuggestion
     }
 
