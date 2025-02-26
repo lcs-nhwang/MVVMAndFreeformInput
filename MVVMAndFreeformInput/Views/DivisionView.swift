@@ -7,45 +7,81 @@
 
 
 import SwiftUI
-
-struct ContentView: View {
-   
-   // MARK: Stored properties
-   @State var base: Int = 1
-   @State var base2: Int = 1
-   
-   // MARK: Computed properties
-   var result: Int {
-       return base / base2
-   }
-   
-   var body: some View {
-       VStack(alignment: .trailing) {
-           
-           Spacer()
-           
-           Text("\(base)")
-               .font(.system(size: 96))
-           Stepper(value: $base, label: { Text("Select First Number")})
-           HStack {
-               Text("÷")
-                   .font(.system(size:96))
-               Spacer()
-               Text("\(base2)")
-                   .font(.system(size:96))
-           }
-           Stepper(value: $base2, label: { Text("Select Second Number")})
-           Text("\(result)")
-               .font(.system(size:96))
-           Spacer()
-       }
-       .padding()
-   }
+ 
+struct DivisionView: View {
+    
+    // MARK: Stored properties
+    
+    // Holds the view model, to track current state of
+    // data within the app
+    @State var viewModel = QuotientViewModel()
+ 
+    // MARK: Computed properties
+    var body: some View {
+        VStack {
+            
+            // Extra space at top
+            Spacer()
+            
+            if let quotient = viewModel.quotient {
+                
+                
+                HStack(alignment: .center) {
+                    HStack(alignment: .top) {
+                        
+                        
+                        
+                        Text("\(quotient.num1.formatted())")
+                            .font(.system(size: 96))
+                        
+                        
+                        Text("÷")
+                            .font(.system(size: 96))
+                        
+                        Text("\(quotient.num2.formatted())")
+                            .font(.system(size: 96))
+                        
+                    }
+                    HStack {
+ 
+                        Text("=")
+                            .font(.system(size: 96))
+ 
+                        Text("\(quotient.result.formatted())")
+                            .font(.system(size: 96))
+                    }
+                }
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .frame(height: 300)
+ 
+            } else {
+                
+                // Show a message indicating that we are
+                // awaiting reasonable input
+                ContentUnavailableView(
+                    "Unable to evaluate quotient",
+                    systemImage: "gear.badge.questionmark",
+                    description: Text(viewModel.recoverySuggestion)
+                )
+                .frame(height: 300)
+            }
+            
+            // INPUT
+            TextField("Number 1", text: $viewModel.providedNum1)
+                .textFieldStyle(.roundedBorder)
+            
+            TextField("Number 2", text: $viewModel.providedNum2)
+                .textFieldStyle(.roundedBorder)
+ 
+            // Extra space at bottom
+            Spacer()
+        }
+        .padding()
+    }
+ 
 }
-
+ 
 #Preview {
-   ContentView()
+    DivisionView()
 }
-
-
-

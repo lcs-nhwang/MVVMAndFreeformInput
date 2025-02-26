@@ -23,13 +23,9 @@ struct AdditionView: View {
             // Extra space at top
             Spacer()
             
-            // OUTPUT
-            // When the power can be unwrapped, show the result
             if let sum = viewModel.sum {
                 
-                // Show the provided base, exponent, and result
-                // in an arrangement that looks the same as how
-                // we write a power on paper in math class
+                
                 HStack(alignment: .center) {
                     HStack(alignment: .top) {
                         
@@ -89,4 +85,3 @@ struct AdditionView: View {
 #Preview {
     AdditionView()
 }
-
