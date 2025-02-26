@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct Quotient {
+    //MARK: Stored Properties
+    var num1: Double
+    var num2: Double
+    //MARK: Computed Properties
+    var result: Double {
+        return num1/num2
+    }
+}

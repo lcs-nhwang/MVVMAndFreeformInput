@@ -33,17 +33,18 @@ struct AdditionView: View {
                 HStack(alignment: .center) {
                     HStack(alignment: .top) {
                         
-                        Text("(")
-                            .font(.system(size: 96))
+                        
                         
                         Text("\(sum.num1.formatted())")
                             .font(.system(size: 96))
                         
-                        Text(")")
+                        
+                        Text("+")
                             .font(.system(size: 96))
                         
-                        Text("\(sum.num2)")
-                            .font(.system(size: 44))
+                        Text("\(sum.num2.formatted())")
+                            .font(.system(size: 96))
+                        
                     }
                     HStack {
  
