@@ -23,28 +23,26 @@ class SumViewModel {
     var recoverySuggestion: String = ""
     
     // MARK: Computed properties
-    // Holds the evaluated power, when the input provided is valid
+    // Holds the evaluated sum, when the input provided is valid
     var sum: Sum? {
         
-        // First check that the string in providedBase can
-        // be converted into a number, then check that the
-        // value is more than 0
+        // First check that the string in num1 can
+        // be converted into a number
         guard let num1 = Double(providedNum1) else {
             recoverySuggestion = "Please provide a number."
             
             return nil
         }
         
-        // Now check that the string in providedExponent can be
-        // converted into an integer, and that the value is
-        // more than or equal to 1
+        // Now check that the string in num2 can be
+        // converted into an number
         guard let num2 = Double(providedNum2) else {
             recoverySuggestion = "Please provide a number."
             
             return nil
         }
         
-        // Now that we know the base and exponent have valid values, return the evaluated power
+        // Now that we know the num1 and num2 have valid values, return the evaluated sum
         recoverySuggestion = "" // No error message
         return Sum(num1: num1, num2: num2)
         
